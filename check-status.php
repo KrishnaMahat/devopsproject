@@ -1,4 +1,4 @@
-<?php include_once('admin/includes/config.php');
+<?php
 
 if(isset($_POST['submit'])){
 
@@ -11,6 +11,7 @@ $noadults=$_POST['noadults'];
 $nochildrens=$_POST['nochildrens'];
 $bno=mt_rand(100000000,9999999999);
 //Code for Insertion
+$con=mysqli_connect("127.0.0.1","root","","rtbsdb");
 $query=mysqli_query($con,"insert into tblbookings(bookingNo,fullName,emailId,phoneNumber,bookingDate,bookingTime,noAdults,noChildrens) values('$bno','$fname','$emailid','$phonenumber','$bookingdate','$bookingtime','$noadults','$nochildrens')");
 if($query){
 echo '<script>alert("Your order sent successfully. Booking number is "+"'.$bno.'")</script>';

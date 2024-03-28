@@ -1,7 +1,7 @@
 <?php session_start();
 error_reporting(0);
 // Database Connection
-include('admin/includes/config.php');
+$con=mysqli_connect("127.0.0.1","root","","rtbsdb");
 
 
   ?>
@@ -95,7 +95,10 @@ while($result=mysqli_fetch_array($query)){
      <a href="booking-details.php?bid=<?php echo $result['id'];?>" title="View Details" class="btn btn-primary btn-xm" target="blank"> View Details</a> 
  </th>
                   </tr>
-         <?php $cnt++;} ?>
+         <?php $cnt++;} 
+         if ($cnt > 1) echo "Data Found";
+         else echo "Nothing Found";
+         ?>
              
                   </tbody>
                   <tfoot>
