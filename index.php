@@ -11,11 +11,10 @@ $noadults=$_POST['noadults'];
 $nochildrens=$_POST['nochildrens'];
 $bno=mt_rand(100000000,9999999999);
 
-$bookingdate = date('Y-m-d', strtotime($bookingdate));
 
 //Code for Insertion
-$query=mysqli_query($con,"insert into tblbookings(bookingNo,fullName,emailId,phoneNumber,bookingDate,bookingTime,noAdults,noChildrens) values('$bno','$fname','$emailid','$phonenumber','$bookingdate','$bookingtime','$noadults','$nochildrens')");
-if($query){
+$bookTableQuery=mysqli_query($con,"insert into tblbookings(bookingNo,fullName,emailId,phoneNumber,bookingDate,bookingTime,noAdults,noChildrens) values('$bno','$fname','$emailid','$phonenumber','$bookingdate','$bookingtime','$noadults','$nochildrens')");
+if($bookTableQuery){
 echo '<script>alert("Your order sent successfully. Booking number is "+"'.$bno.'")</script>';
 echo "<script type='text/javascript'> document.location = 'index.php'; </script>";
 } else {
@@ -29,7 +28,7 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 <html lang="en">
 
 <head>
-	<title>Restaurent Table Booking System</title>
+	<title>Devops Project - Restaurent Table Booking System</title>
 	<!-- Meta tags -->
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -50,25 +49,21 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 
 	<link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 </head>
-
 <body>
 	<h1 class="header-w3ls">
-		Table Booking Form</h1>
+		Book your table</h1>
 	<div class="appointment-w3">
 		<form action="#" method="post">
 			<div class="personal">
 			
 				<div class="main">
 					<div class="form-left-w3l">
-
 						<input type="text" class="top-up" name="name" placeholder="Name" required="">
 					</div>
 					<div class="form-left-w3l">
-
 						<input type="email" name="email" placeholder="Email" required="">
 					</div>
 					<div class="form-right-w3ls ">
-
 						<input class="buttom" type="text" name="phone" placeholder="Phone Number" required="">
 						<div class="clearfix"></div>
 					</div>
@@ -76,11 +71,7 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 				
 			</div>
 			<div class="information">
-				
-				
-				<div class="main">
-
-					
+				<div class="main">	
 					<div class="form-left-w3l">
 						<input id="datepicker" name="bookdate" type="text" placeholder="Booking Date &" required="">
 						<input type="text" id="timepicker" name="booktime" class="timepicker form-control hasWickedpicker" placeholder="Time" required=""
@@ -90,7 +81,6 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 				</div>
 				
 				<div class="main">
-
 					<div class="form-left-w3l">
 						<select class="form-control" name="noadults" required>
 					<option value="">Number of Adults</option>
@@ -122,7 +112,6 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 				
 			</div>
 			
-			
 			<div class="btnn">
 				<input type="submit" value="Reserve a Table" name="submit">
 			</div>
@@ -134,8 +123,6 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 	</div>
 		</form>
 	</div>
-
-
 
 	<!-- js -->
 	<script type='text/javascript' src='js/jquery-2.2.3.min.js'></script>
