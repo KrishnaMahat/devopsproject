@@ -1,36 +1,29 @@
-<?php include_once('admin/includes/config.php');
+<?php 
+	include_once('admin/includes/config.php');
+	if(isset($_POST['submit'])){
+		$fname=$_POST['name'];
+		$emailid=$_POST['email'];
+		$phonenumber=$_POST['phonenumber'];
+		$bookingdate=$_POST['bookingdate'];
+		$bookingdate = date('Y-m-d', strtotime($bookingdate));
+		$bookingtime=$_POST['bookingtime'];
+		$noadults=$_POST['noofadults'];
+		$nochildrens=$_POST['noofchildrens'];
+		$bno=mt_rand(100000000,9999999999);
 
-if(isset($_POST['submit'])){
-
-$fname=$_POST['name'];
-$emailid=$_POST['email'];
-$phonenumber=$_POST['phonenumber'];
-$bookingdate=$_POST['bookingdate'];
-$bookingtime=$_POST['bookingtime'];
-$noadults=$_POST['noadults'];
-$nochildrens=$_POST['nochildrens'];
-$bno=mt_rand(100000000,9999999999);
-
-$bookingdate = date('Y-m-d', strtotime($bookingdate));
-
-//Code for Insertion
-$query=mysqli_query($con,"insert into tblbookings(bookingNo,fullName,emailId,phoneNumber,bookingDate,bookingTime,noAdults,noChildrens) values('$bno','$fname','$emailid','$phonenumber','$bookingdate','$bookingtime','$noadults','$nochildrens')");
-if($query){
-echo '<script>alert("Your order sent successfully. Booking number is "+"'.$bno.'")</script>';
-echo "<script type='text/javascript'> document.location = 'index.php'; </script>";
-} else {
-echo "<script>alert('Something went wrong. Please try again.');</script>";
-}
-
-}
-
+		$query=mysqli_query($con,"insert into tblbookings(bookingNo,fullName,emailId,phoneNumber,bookingDate,bookingTime,noAdults,noChildrens) values('$bno','$fname','$emailid','$phonenumber','$bookingdate','$bookingtime','$noadults','$nochildrens')");
+		if($query){
+			echo '<script>alert("Your order sent successfully. Booking number is "+"'.$bno.'")</script>';
+			echo "<script type='text/javascript'> document.location = 'index.php'; </script>";
+		} else {
+			echo "<script>alert('Something went wrong. Please try again.');</script>";
+		}
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<title>Restaurent Table Booking System</title>
-	<!-- Meta tags -->
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="keywords" content=""
@@ -38,22 +31,15 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 	<script type="application/x-javascript">
 		addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
 	</script>
-	<!-- Meta tags -->
-	<!--stylesheets-->
-	<link href="css/style.css" rel='stylesheet' type='text/css' media="all">
-	<!--//style sheet end here-->
-	<!-- Calendar -->
-	<link rel="stylesheet" href="css/jquery-ui.css" />
-	<!-- //Calendar -->
-	<link href="css/wickedpicker.css" rel="stylesheet" type='text/css' media="all" />
-	<!-- Time-script-CSS -->
 
+	<link href="css/style.css" rel='stylesheet' type='text/css' media="all">
+	<link rel="stylesheet" href="css/jquery-ui.css" />
+	<link href="css/wickedpicker.css" rel="stylesheet" type='text/css' media="all" />
 	<link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 </head>
 
 <body>
-	<h1 class="header-w3ls">
-		Table Booking Form</h1>
+	<h1 class="header-w3ls">Table Booking Form</h1>
 	<div class="appointment-w3">
 		<form action="#" method="post">
 			<div class="personal">
@@ -75,12 +61,8 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 				</div>
 				
 			</div>
-			<div class="information">
-				
-				
-				<div class="main">
-
-					
+			<div class="information">			
+				<div class="main">				
 					<div class="form-left-w3l">
 						<input id="datepicker" name="bookingdate" type="text" placeholder="Booking Date &" required="">
 						<input type="text" id="timepicker" name="bookingtime" class="timepicker form-control hasWickedpicker" placeholder="Time" required=""
@@ -90,9 +72,8 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 				</div>
 				
 				<div class="main">
-
 					<div class="form-left-w3l">
-						<select class="form-control" name="noadults" required>
+						<select class="form-control" name="noofadults" required>
 					<option value="">Number of Adults</option>
 						<option value="1">1</option>
 					<option value="2">2</option>
@@ -102,10 +83,12 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 					<option value="6">6</option>
 					<option value="7">7</option>
 					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
 					</select>
 					</div>
 					<div class="form-right-w3ls">
-						<select class="form-control" name="nochildrens" required>
+						<select class="form-control" name="noofchildrens" required>
 					<option value="">Number of Children</option>
 					<option value="1">0</option>
 					<option value="1">1</option>
@@ -116,18 +99,18 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 					<option value="6">6</option>
 					<option value="7">7</option>
 					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
 					</select>
 					</div>
-				</div>
-				
+				</div>	
 			</div>
-			
-			
+				
 			<div class="btnn">
 				<input type="submit" value="Reserve a Table" name="submit">
 			</div>
 					<div class="copy">
-		<p>Check Booking <a href="check-status.php" target="_blank">Status</a></p>
+		<p>Check your Booking <a href="check-status.php" target="_blank">Status</a></p>
 	</div>
 		<div class="copy">
 		<p>Admin Panel<a href="admin/" target="_blank"> Login here</a></p>
@@ -135,26 +118,17 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 		</form>
 	</div>
 
-
-
-	<!-- js -->
 	<script type='text/javascript' src='js/jquery-2.2.3.min.js'></script>
-	<!-- //js -->
-	<!-- Calendar -->
 	<script src="js/jquery-ui.js"></script>
 	<script>
 		$(function () {
 			$("#datepicker,#datepicker1,#datepicker2,#datepicker3").datepicker();
 		});
 	</script>
-	<!-- //Calendar -->
-	<!-- Time -->
 	<script type="text/javascript" src="js/wickedpicker.js"></script>
 	<script type="text/javascript">
 		$('.timepicker,.timepicker1').wickedpicker({ twentyFour: false });
 	</script>
-	<!-- //Time -->
-
 </body>
 
 </html>
