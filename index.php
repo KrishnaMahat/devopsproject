@@ -1,26 +1,29 @@
 <?php 
-	include_once('admin/includes/config.php');
-	if(isset($_POST['submit'])){
-		$fname=$_POST['name'];
-		$emailid=$_POST['email'];
-		$phonenumber=$_POST['phonenumber'];
-		$bookingdate=$_POST['bookingdate'];
-		$bookingdate = date('Y-m-d', strtotime($bookingdate));
-		$bookingtime=$_POST['bookingtime'];
-		$noadults=$_POST['noofadults'];
-		$nochildrens=$_POST['noofchildrens'];
-		$bno=mt_rand(100000000,9999999999);
 
+if(isset($_POST['submit'])){
+	$fname=$_POST['name'];
+	$emailid=$_POST['email'];
+	$phonenumber=$_POST['phonenumber'];
+	$bookingdate=$_POST['bookingdate'];
+	$bookingdate = date('Y-m-d', strtotime($bookingdate));
+	$bookingtime=$_POST['bookingtime'];
+	$noadults=$_POST['noofadults'];
+	$nochildrens=$_POST['noofchildrens'];
+	$bno=mt_rand(100000000,9999999999);
+	$con=mysqli_connect("127.0.0.1","root","","rtbsdb");
+	if(empty($fname) || empty($emailid) || empty($phonenumber) ) {
+		echo "<p>Empty Form Submitted</p>";
+	} else {
 		$query=mysqli_query($con,"insert into tblbookings(bookingNo,fullName,emailId,phoneNumber,bookingDate,bookingTime,noAdults,noChildrens) values('$bno','$fname','$emailid','$phonenumber','$bookingdate','$bookingtime','$noadults','$nochildrens')");
 		if($query){
-			echo '<script>alert("Your order sent successfully. Booking number is "+"'.$bno.'")</script>';
-			echo "<script type='text/javascript'> document.location = 'index.php'; </script>";
+			echo '<p>Your order sent successfully. Booking number is ' . $bno . '</p>';
 		} else {
-			echo "<script>alert('Something went wrong. Please try again.');</script>";
+			echo '<p>Something went wrong. Please try again.</p>';
 		}
 	}
+
+}
 ?>
-<!DOCTYPE html>
 <html lang="en">
 <head>
 	<title>Restaurent Table Booking System</title>
@@ -41,7 +44,7 @@
 <body>
 	<h1 class="header-w3ls">Table Booking Form</h1>
 	<div class="appointment-w3">
-		<form action="#" method="post">
+		<form action="" method="post">
 			<div class="personal">
 			
 				<div class="main">
