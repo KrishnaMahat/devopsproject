@@ -24,13 +24,13 @@ if(isset($_POST['submit'])){
 
 }
 ?>
+
 <html lang="en">
 <head>
-	<title>Restaurent Table Booking System</title>
+	<title>Devops Project - Restaurent Table Booking System</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="keywords" content=""
-	/>
+	<meta name="keywords" content=""/>
 	<script type="application/x-javascript">
 		addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
 	</script>
@@ -40,7 +40,6 @@ if(isset($_POST['submit'])){
 	<link href="css/wickedpicker.css" rel="stylesheet" type='text/css' media="all" />
 	<link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 </head>
-
 <body>
 	<h1 class="header-w3ls">Table Booking Form</h1>
 	<div class="appointment-w3">
@@ -49,16 +48,13 @@ if(isset($_POST['submit'])){
 			
 				<div class="main">
 					<div class="form-left-w3l">
-
 						<input type="text" class="top-up" name="name" placeholder="Name" required="">
 					</div>
 					<div class="form-left-w3l">
-
 						<input type="email" name="email" placeholder="Email" required="">
 					</div>
 					<div class="form-right-w3ls ">
-
-						<input class="buttom" type="text" name="phonenumber" placeholder="Phone Number" required="">
+						<input class="buttom" type="text" name="phone" placeholder="Phone Number" required="">
 						<div class="clearfix"></div>
 					</div>
 				</div>
@@ -67,8 +63,8 @@ if(isset($_POST['submit'])){
 			<div class="information">			
 				<div class="main">				
 					<div class="form-left-w3l">
-						<input id="datepicker" name="bookingdate" type="text" placeholder="Booking Date &" required="">
-						<input type="text" id="timepicker" name="bookingtime" class="timepicker form-control hasWickedpicker" placeholder="Time" required=""
+						<input id="datepicker" name="bookdate" type="text" placeholder="Booking Date &" required="">
+						<input type="text" id="timepicker" name="booktime" class="timepicker form-control hasWickedpicker" placeholder="Time" required=""
 						 onkeypress="return false;">
 						<div class="clear"></div>
 					</div>
@@ -108,7 +104,6 @@ if(isset($_POST['submit'])){
 					</div>
 				</div>	
 			</div>
-				
 			<div class="btnn">
 				<input type="submit" value="Reserve a Table" name="submit">
 			</div>
