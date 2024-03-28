@@ -4,10 +4,9 @@ if(isset($_POST['submit'])){
 
 $fname=$_POST['name'];
 $emailid=$_POST['email'];
-$phonenumber=$_POST['phonenumber'];
-$bookingdate=$_POST['bookingdate'];
-$bookingdate = date('Y-m-d', strtotime($bookingdate));
-$bookingtime=$_POST['bookingtime'];
+$phonenumber=$_POST['phone'];
+$bookingdate=$_POST['bookdate'];
+$bookingtime=$_POST['booktime'];
 $noadults=$_POST['noadults'];
 $nochildrens=$_POST['nochildrens'];
 $bno=mt_rand(100000000,9999999999);
@@ -65,7 +64,7 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 						<input type="email" name="email" placeholder="Email" required="">
 					</div>
 					<div class="form-right-w3ls ">
-						<input class="buttom" type="text" name="phonenumber" placeholder="Phone Number" required="">
+						<input class="buttom" type="text" name="phone" placeholder="Phone Number" required="">
 						<div class="clearfix"></div>
 					</div>
 				</div>
@@ -74,8 +73,8 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 			<div class="information">
 				<div class="main">	
 					<div class="form-left-w3l">
-						<input id="datepicker" name="bookingdate" type="text" placeholder="Booking Date &" required="">
-						<input type="text" id="timepicker" name="bookingtime" class="timepicker form-control hasWickedpicker" placeholder="Time" required=""
+						<input id="datepicker" name="bookdate" type="text" placeholder="Booking Date &" required="">
+						<input type="text" id="timepicker" name="booktime" class="timepicker form-control hasWickedpicker" placeholder="Time" required=""
 						 onkeypress="return false;">
 						<div class="clear"></div>
 					</div>
