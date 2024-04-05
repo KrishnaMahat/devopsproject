@@ -3,14 +3,15 @@
 if(isset($_POST['submit'])){
 	$fname=$_POST['name'];
 	$emailid=$_POST['email'];
-	$phonenumber=$_POST['phonenumber'];
-	$bookingdate=$_POST['bookingdate'];
+	$phonenumber=$_POST['phone'];
+	$bookingdate=$_POST['bookdate'];
 	$bookingdate = date('Y-m-d', strtotime($bookingdate));
-	$bookingtime=$_POST['bookingtime'];
+	$bookingtime=$_POST['booktime'];
 	$noadults=$_POST['noofadults'];
 	$nochildrens=$_POST['noofchildrens'];
 	$bno=mt_rand(100000000,9999999999);
 	$con=mysqli_connect("127.0.0.1","root","","rtbsdb");
+
 	if(empty($fname) || empty($emailid) || empty($phonenumber) ) {
 		echo "<p>Empty Form Submitted</p>";
 	} else {
