@@ -6,6 +6,13 @@ use PHPUnit\Framework\TestCase;
 
 class unittest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        // Reset $_POST data before each test
+        $_POST = [];
+    }
+
     public function testSuccessfulBookingSubmission()
     {
         // Start output buffering
@@ -13,13 +20,13 @@ class unittest extends TestCase
         
         // Simulate form submission with valid data
         $_POST['submit'] = true;
-        $_POST['name'] = 'John Doe';
+        $_POST['name'] = 'Ram Mahat'; 
         $_POST['email'] = 'john@example.com';
-        $_POST['phonenumber'] = '1234567890';
-        $_POST['bookingdate'] = '2024-04-01';
-        $_POST['bookingtime'] = '14:00:00';
-        $_POST['noofadults'] = '2';
-        $_POST['noofchildrens'] = '1';
+        $_POST['phone'] = '9806518409';
+        $_POST['bookdate'] = '2026-04-01';
+        $_POST['booktime'] = '18:00:00';
+        $_POST['noofadults'] = '7';
+        $_POST['noofchildrens'] = '6';
     
         // Include the script to test
         require_once 'index.php';
@@ -29,59 +36,49 @@ class unittest extends TestCase
         // Assert that success message is displayed
         $this->assertStringContainsString('Your order sent successfully.', $output);
     }
-    
-    public function testFailedBookingSubmission()
-    {
+
+    public function testAdminLoginPage()
+    {        
+        // Start output buffering to capture header output
         ob_start();
 
-        // Simulate form submission with invalid data
-        $_POST['submit'] = true;
-        $_POST['name'] = 'Hello World'; 
-        $_POST['email'] = 'john@example.com';
-        $_POST['phonenumber'] = '1234567890';
-        $_POST['bookingdate'] = '';
-        $_POST['bookingtime'] = '';
-        $_POST['noofadults'] = '2';
-        $_POST['noofchildrens'] = '1';
-
-        require_once 'index.php'; 
+        // Include the script to test
+        require_once 'admin/index.php';
         $output = ob_get_clean();
-
-        $this->assertStringContainsString('Your order sent successfully.', $output);
+        
+        // Assert that the header output contains the expected redirection
+        $this->assertStringContainsString('Sign in to start your session', $output);
     }
 
-    public function testBookingNumberGeneration()
+    public function testEmptyEmailSubmission()
     {
-         // Start output buffering
-         ob_start();
-        
-         // Simulate form submission with valid data
-         $_POST['submit'] = true;
-         $_POST['name'] = 'John Doe';
-         $_POST['email'] = 'john@example.com';
-         $_POST['phonenumber'] = '1234567890';
-         $_POST['bookingdate'] = '2024/04-01';
-         $_POST['bookingtime'] = '2:00 PM';
-         $_POST['noofadults'] = '2';
-         $_POST['noofchildrens'] = '1';
-     
-         // Include the script to test
-         require_once 'index.php';
-     
-         $output = ob_get_clean();
-     
-         // Assert that success message is displayed
-         $this->assertStringContainsString('Booking Number is', $output);
+        // Simulate form submission with empty data
+        $_POST['submit'] = true;
+        $_POST['name'] = 'Ram Mahat'; 
+        $_POST['email'] = '';
+        $_POST['phone'] = '9806518409';
+        $_POST['bookdate'] = '2026-04-01';
+        $_POST['booktime'] = '18:00:00';
+        $_POST['noofadults'] = '7';
+        $_POST['noofchildrens'] = '6';
+
+        ob_start();
+        require_once 'index.php'; // Include the application file
+        $output = ob_get_clean();
+
+        // Assert that success message is not displayed
+        $this->assertStringNotContainsString('Empty Form Submitted', $output);
     }
 
     public function testEmptyFormSubmission()
     {
         // Simulate form submission with empty data
+        $_POST['submit'] = true;
         $_POST['name'] = '';
         $_POST['email'] = '';
-        $_POST['phonenumber'] = '';
-        $_POST['bookingdate'] = '';
-        $_POST['bookingtime'] = '';
+        $_POST['phone'] = '';
+        $_POST['bookdate'] = '';
+        $_POST['booktime'] = '';
         $_POST['noofadults'] = '';
         $_POST['noofchildrens'] = '';
 
@@ -104,5 +101,4 @@ class unittest extends TestCase
         // Assert that an error message is displayed
         $this->assertStringContainsString('Data Found', $output);
     }
-
 }

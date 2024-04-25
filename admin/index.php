@@ -1,9 +1,9 @@
 <?php
 session_start();
-include('includes/config.php');
 
 if(isset($_POST['login']))
   {
+    $con=mysqli_connect("127.0.0.1","root","","rtbsdb");
     $uname=$_POST['username'];
     $Password=md5($_POST['inputpwd']);
     $query=mysqli_query($con,"select ID,AdminuserName,UserType from tbladmin where  AdminuserName='$uname' && Password='$Password' ");
@@ -15,7 +15,7 @@ if(isset($_POST['login']))
      header('location:dashboard.php');
     }
     else{
-    echo "<script>alert('Invalid Details.');</script>";          
+    echo "<p>Invalid details.</p>";          
     }
   }
   ?>
@@ -40,7 +40,7 @@ if(isset($_POST['login']))
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="../index.php" class="h1"><b>Admin</b> |  RTRS</a>
+      <a href="../index.php" class="h1"><b>Admin</b> |  DEVOPS</a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>
