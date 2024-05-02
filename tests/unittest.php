@@ -35,6 +35,9 @@ class unittest extends TestCase
     
         // Assert that success message is displayed
         $this->assertStringContainsString('Your order sent successfully.', $output);
+
+        ob_end_flush();
+
     }
 
     public function testAdminLoginPage()
@@ -48,6 +51,9 @@ class unittest extends TestCase
         
         // Assert that the header output contains the expected redirection
         $this->assertStringContainsString('Sign in to start your session', $output);
+
+        ob_end_flush();
+
     }
 
     public function testEmptyEmailSubmission()
@@ -68,6 +74,9 @@ class unittest extends TestCase
 
         // Assert that success message is not displayed
         $this->assertStringNotContainsString('Empty Form Submitted', $output);
+
+        ob_end_flush();
+
     }
 
     public function testEmptyFormSubmission()
@@ -88,6 +97,9 @@ class unittest extends TestCase
 
         // Assert that success message is not displayed
         $this->assertStringNotContainsString('Empty Form Submitted', $output);
+
+        ob_end_flush();
+
     }
 
     public function testSearchResultWithExactNumber()
@@ -100,5 +112,8 @@ class unittest extends TestCase
 
         // Assert that an error message is displayed
         $this->assertStringContainsString('Data Found', $output);
+
+        ob_end_flush();
+
     }
 }
